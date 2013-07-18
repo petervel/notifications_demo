@@ -1,0 +1,1311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <link rel="apple-touch-icon" href="http://localhost:8080/media/images/apple_touch_icon.png">
+
+    <title>Ons
+    </title>
+
+    <!--[if lte IE 6]>
+    <link href="/stylesheets/base2_ie6.css" type="text/css" rel="stylesheet"/>
+    <![endif]-->
+
+
+    <script src="chat_application.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="console.log.js"></script>
+
+
+    <!--[if IE]>
+    <script type="text/javascript" src="/javascript/excanvas.js"></script><![endif]-->
+    <script type="text/javascript" src="bargraph.js"></script>
+    <script type="text/javascript" src="dashboard.js"></script>
+    <script type="text/javascript" src="jquery.flot.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tasksAndSignals').load('/dashboard/tasks');
+            setTimeout("loadStatistics()", 200);
+        });
+
+        function loadStatistics() {
+            $('#dashboard_statistics').load('/dashboard/statistics');
+        }
+    </script>
+
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="background-image: url('balloon.jpg'); background-size: cover;">
+<div id="banner"></div>
+<div id="container">
+<!-- TOP MENU -->
+<div id="menu" class="en dashboard">
+    <ul id="menunav">
+        <li id="mn-dashboard"><a href="http://localhost:8080/dashboard/" onfocus="this.blur();">Dashboard</a></li>
+        <li id="mn-client"><a href="http://localhost:8080/client/" onfocus="this.blur();">Client</a></li>
+        <li id="mn-employee"><a href="http://localhost:8080/employee/" onfocus="this.blur();">Employee</a></li>
+        <li id="mn-presence"><a href="http://localhost:8080/presence/" onfocus="this.blur();">Care</a></li>
+        <li id="mn-reports"><a href="http://localhost:8080/report/" onfocus="this.blur();">Reports</a></li>
+        <li id="mn-admin"><a href="http://localhost:8080/administration/" onfocus="this.blur();">Settings</a></li>
+    </ul>
+    <div id="mid">
+        <div id="movesbutton"><a href="http://localhost:8080/planning" target="_top" onfocus="this.blur();"><img
+                src="moves-button.png" alt="Planning"></a></div>
+    </div>
+    <ul id="menunav">
+        <li id="mn-help"><a title="Help bij dit systeem" href="http://localhost:8080/help?page=home" target="_top"
+                            onfocus="this.blur();">Help</a></li>
+        <li id="mn-logout"><a title="Uitloggen" href="http://localhost:8080/logout/" onfocus="this.blur();">Logout</a>
+        </li>
+    </ul>
+</div>
+
+<!-- PAGE -->
+<div id="page_container">
+<!-- PAGE CONTENT -->
+<form id="j_id33" name="j_id33" method="post" action="http://localhost:8080/dashboard/"
+      enctype="application/x-www-form-urlencoded">
+<input name="j_id33" value="j_id33" type="hidden">
+
+<div class="dashboard">
+    <!-- page, wide_page and small_page -->
+    <div id="wide_page">
+        <div id="wide_pageheader">
+            <h1>
+                <div style="float: left;">
+                    Dashboard
+                </div>
+                <div style="float: right; cursor: pointer;" onclick="$('#unitSelector').toggle();">All Units</div>
+                <div style="border: 2px solid rgb(102, 102, 102); position: absolute; width: 400px; right: 15px; top: 56px; color: black; background-color: white; padding: 5px 10px 10px; display: none; z-index: 10;"
+                     id="unitSelector">
+
+                    <script type="text/javascript">
+                        function loadUnit(unitPK) {
+                            document.location = '/dashboard/unit/' + unitPK;
+                        }
+                    </script>
+                    <script src="unit.js" type="text/javascript"></script>
+                    <div style="float: right;" onclick="$('#unitSelector').hide();">X</div>
+                    Choose Unit
+                    <div style="padding-top: 10px; padding-left: 15px;">
+                        <div style="padding-left: 10px; height: 20px;">
+
+                            <a href="http://localhost:8080/dashboard/unit/0"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;"><img
+                                    src="6.png"></a>
+                            <a href="http://localhost:8080/dashboard/unit/0"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;">
+                                All units</a>
+
+                        </div>
+
+                        <h3>Last visited units</h3>
+
+                        <div style="padding-left: 10px; height: 20px;">
+
+                            <a href="http://localhost:8080/dashboard/unit/7102"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;"><img
+                                    src="6.png"></a>
+                            <a href="http://localhost:8080/dashboard/unit/7102"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;">
+                                Zorgcentrum Ginette</a>
+
+                        </div>
+                        <div style="padding-left: 10px; height: 20px;">
+
+                            <a href="http://localhost:8080/dashboard/unit/5752"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;"><img
+                                    src="6.png"></a>
+                            <a href="http://localhost:8080/dashboard/unit/5752"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;">
+                                Steunpunt</a>
+
+                        </div>
+                        <div style="padding-left: 10px; height: 20px;">
+
+                            <a href="http://localhost:8080/dashboard/unit/215"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;"><img
+                                    src="6.png"></a>
+                            <a href="http://localhost:8080/dashboard/unit/215"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;">
+                                Zorg in onze wijk</a>
+
+                        </div>
+                        <div style="padding-left: 10px; height: 20px;">
+
+                            <a href="http://localhost:8080/dashboard/unit/216"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;"><img
+                                    src="6.png"></a>
+                            <a href="http://localhost:8080/dashboard/unit/216"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;">
+                                Noord</a>
+
+                        </div>
+                        <div style="padding-left: 10px; height: 20px;">
+
+                            <a href="http://localhost:8080/dashboard/unit/217"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;"><img
+                                    src="6.png"></a>
+                            <a href="http://localhost:8080/dashboard/unit/217"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;">
+                                Zuid</a>
+
+                        </div>
+                        <div style="padding-left: 10px; height: 20px;">
+
+                            <a href="http://localhost:8080/dashboard/unit/1455"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;"><img
+                                    src="6.png"></a>
+                            <a href="http://localhost:8080/dashboard/unit/1455"
+                               onclick="event.stopPropagation(); window.event.cancelBubble = true;">
+                                Zorgcentrum Andrea</a>
+
+                        </div>
+                    </div>
+
+                    <div style="padding-top: 10px; padding-left: 15px;">
+                        <h3>Unit tree</h3>
+
+                        <div id="unit_tree">
+                            <div>
+                                <div>
+                                    <div class="branchExpand" onclick="javascript:menu(this)">
+                                        <div class="unit1" onclick="javascript:consume()"><a class="text"
+                                                                                             href="javascript:loadUnit(1);">Zorginstelling</a>
+                                        </div>
+                                    </div>
+                                    <div class="childs">
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit4" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(1851);">Wachtlijst</a>
+                                            </div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(1852);">WL
+                                                    WZC</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4167);">Wachtlijst
+                                                        locatie A</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6094);">Wachtlijst
+                                                        locatie B</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(1853);">WL
+                                                    ZBC</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6096);">Wachtlijst
+                                                        VP</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(4163);">WL
+                                                    V&amp;V dagbesteding</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4165);">MAR
+                                                        V&amp;V - wachtlijst</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(4155);">WL
+                                                    dagbehandeling</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4161);">MAR
+                                                        DAC - wachtlijst</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(4153);">WL
+                                                    Behandelcentra</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4157);">ARK
+                                                        VG - wachtlijst</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4159);">ARK
+                                                        JVG - wachtlijst</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(1455);">Zorgcentrum
+                                                Andrea</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="leaf">
+                                                <div class="unit8" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(1457);">Steunpunt</a>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit8" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(1458);">Steunpunt</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="leaf">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(454);">Zorgcentrum
+                                                Belinda</a></div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(5351);">Zorgcentrum
+                                                Christa</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(5752);">Steunpunt</a>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(5754);">Steunpunt</a>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(5756);">Steunpunt</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(4180);">Zorgcentrum
+                                                Danielle</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(4182);">Zorg</a>
+                                                </div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4186);">Dagbesteding
+                                                        somatiek</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4188);">Dagbesteding
+                                                        psycho geriatrisch</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(4184);">Wonen</a>
+                                                </div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4190);">Retail</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4194);">Healthcare</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4192);">Receptie</a>
+                                                    </div>
+                                                </div>
+                                                <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4196);">PEP</a>
+                                                    </div>
+                                                </div>
+                                                <div class="childs" style="display: none;">
+                                                    <div class="leaf">
+                                                        <div class="unit5" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(4201);">PEP -
+                                                            kamer 1</a></div>
+                                                    </div>
+                                                    <div class="leaf">
+                                                        <div class="unit5" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(4203);">PEP -
+                                                            kamer 2</a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(4198);">Directie</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(2);">Zorgcentrum
+                                                Estelle</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(1456);">Wonen</a>
+                                                </div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                    <div class="unit1" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(1459);">woonunit</a>
+                                                    </div>
+                                                </div>
+                                                <div class="childs" style="display: none;">
+                                                    <div class="leaf">
+                                                        <div class="unit5" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(1460);">laarhoven
+                                                            2-1</a></div>
+                                                    </div>
+                                                    <div class="leaf">
+                                                        <div class="unit5" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(1461);">laarhoven
+                                                            2-2</a></div>
+                                                    </div>
+                                                    <div class="leaf">
+                                                        <div class="unit5" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(1462);">laarhoven
+                                                            2-3</a></div>
+                                                    </div>
+                                                    <div class="leaf">
+                                                        <div class="unit5" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(1463);">laarhoven
+                                                            2-4</a></div>
+                                                    </div>
+                                                    <div class="leaf">
+                                                        <div class="unit3" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(7124);">TOP
+                                                            kamers</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(3);">Steunpunt</a>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(4);">Steunpunt</a>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(616);">Aanleun</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(7102);">Zorgcentrum
+                                                Ginette</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(7109);">Verpleeghuis
+                                                    A</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7110);">Geriatrische
+                                                        Revalidatie</a></div>
+                                                </div>
+                                                <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7111);">Afdeling
+                                                        A</a></div>
+                                                </div>
+                                                <div class="childs" style="display: none;">
+                                                    <div class="leaf">
+                                                        <div class="unit4" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(7113);">Kamer
+                                                            1</a></div>
+                                                    </div>
+                                                    <div class="leaf">
+                                                        <div class="unit4" onclick="javascript:consume()"><a
+                                                                class="text" href="javascript:loadUnit(7114);">Kamer
+                                                            2</a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7112);">Afdeling
+                                                        B</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(7104);">Zorgcentrum
+                                                    B</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7115);">Afdeling
+                                                        A</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7116);">Afdeling
+                                                        B</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(7105);">Woonzorgcomplex
+                                                    C</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7117);">Afdeling
+                                                        A</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7118);">Afdeling
+                                                        B</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(7106);">Zorg</a>
+                                                </div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7107);">Gemeente
+                                                        A</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7108);">Gemeente
+                                                        B</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(839);">Zorgcentrum
+                                                Francien</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(951);">Verzorgingshuis</a>
+                                                </div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6102);">PH-101</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6104);">PH-102</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(952);">Afdeling
+                                                    PG-1</a></div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(840);">Verpleegunit</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(5);">Geriatrische
+                                                revalidatie</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(5208);">Revalidatie</a>
+                                                </div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(5210);">JP-RV01</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(5212);">JP-RV02</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(5214);">JP-RV03</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(5216);">JP-RV04</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7125);">TOP
+                                                        kamers</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(6);">Aanleunwoningen
+                                                    De Eglantier</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit4" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2715);">Kamer
+                                                        1</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2717);">Kamer
+                                                        2</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2719);">Kamer
+                                                        3</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2721);">Kamer
+                                                        4</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2723);">Kamer
+                                                        5</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2725);">Kamer
+                                                        6</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2727);">Kamer
+                                                        7</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2729);">Kamer
+                                                        8</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(2731);">Kamer
+                                                        9</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(7);">Abbeyfieldhuis</a>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(615);">Aanleunwoningen
+                                                    Landjuweel</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="leaf">
+                                            <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(6016);">Dagbehandeling
+                                                PG</a></div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit2" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(1355);">Dagbehandeling
+                                                Somatiek</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(1356);">Afdeling
+                                                    A</a></div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(1357);">Afdeling
+                                                    B</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(215);">Zorg
+                                                in onze wijk</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit4" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(216);">Noord</a>
+                                                </div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(5465);">Revalidatie</a>
+                                                    </div>
+                                                </div>
+                                                <div class="childs" style="display: none;">
+                                                    <div class="leaf">
+                                                        <div class="unit5" onclick="javascript:consume()"><a
+                                                                class="text"
+                                                                href="javascript:loadUnit(5467);">Kamer1</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit4" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(217);">Zuid</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(6901);">Regionaal
+                                                behandelcentrum</a></div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit4" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(6951);">revalidatie
+                                                    CVA</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6958);">rev-cva-01</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6960);">rev-cva-02</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6962);">rev-cva-03</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit4" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(6953);">revalidatie
+                                                    heup</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6964);">rev-heup-01</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6966);">rev-heup-02</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6968);">rev-heup-03</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit4" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(6955);">revalidatie
+                                                    algemeen</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6970);">rev-alg-01</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6972);">rev-alg-02</a>
+                                                    </div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit5" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(6974);">rev-alg-02</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="branchCollapse" onclick="javascript:menu(this)">
+                                            <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                 href="javascript:loadUnit(7119);">Zorghotel</a>
+                                            </div>
+                                        </div>
+                                        <div class="childs" style="display: none;">
+                                            <div class="branchCollapse" onclick="javascript:menu(this)">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(7120);">ZH
+                                                    locatie noord</a></div>
+                                            </div>
+                                            <div class="childs" style="display: none;">
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7122);">ZHN
+                                                        kamer 1</a></div>
+                                                </div>
+                                                <div class="leaf">
+                                                    <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                         href="javascript:loadUnit(7123);">ZHN
+                                                        kamer 2</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="leaf">
+                                                <div class="unit3" onclick="javascript:consume()"><a class="text"
+                                                                                                     href="javascript:loadUnit(7121);">ZH
+                                                    locatie oost</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h1>
+        </div>
+        <div id="wide_pagecontent">
+            <div id="dashboard_statistics" style="height: 187px;">
+                <div class="window33">
+                    <div class="header"></div>
+                    <div class="content">
+                        <div class="graph_title" style="width: 100%;">
+                    <span style="padding-left: 4px;">Delivery reliability:&nbsp;<span
+                            class="leverbetrouwbaarheidTextValue">44</span>
+                    </span>
+	            <span class="graph_more_details" style="float: right;">
+	       	            <a href="http://localhost:8080/dashboard/deliveryreliability/category/0">Meer details</a>
+	            </span>
+                        </div>
+                        <div class="graph_content">
+                            <div style="padding-top: 10px;"><span height="35" width="284" id="j_id16:j_id16"><canvas
+                                    id="undefined_canvas" height="35" width="284"></canvas></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer"></div>
+                </div>
+                <div class="window33">
+                    <div class="header"></div>
+                    <div class="content">
+                        <div class="graph_title" style="width: 100%;">
+                            <span style="padding-left: 4px;">Time for care:&nbsp;<span
+                                    class="redTextValue">66%</span></span>
+	            <span class="graph_more_details" style="float: right;">
+	       	            <a href="http://localhost:8080/dashboard/productivity">Meer details</a>
+	            </span>
+                        </div>
+                        <div class="graph_content">
+                            <div style="padding-top: 10px;"><span height="35" width="284" id="j_id69:j_id69"><canvas
+                                    id="undefined_canvas" height="35" width="284"></canvas></span>
+
+                                <div style="float: left; margin-left: 4px; background-color: rgb(223, 16, 137); width: 14px; height: 14px; margin-top: 5px;"></div>
+                                <div style="float: left; padding-left: 15px; font: 12px Arial; margin-top: 5px;">My
+                                    teams
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer"></div>
+                </div>
+                <div class="window33">
+                    <div class="header"></div>
+                    <div class="content">
+                        <div class="graph_title" style="width: 100%;">
+		        <span style="padding-left: 4px;">Available places:&nbsp;<span
+                        class="leverbetrouwbaarheidTextValue">29</span>
+		        </span>
+	            <span class="graph_more_details" style="float: right;">
+	       	            <a href="http://localhost:8080/dashboard/roomavailability">Meer details</a>
+	            </span>
+                        </div>
+                        <div class="graph_content">
+                            <div id="dashboard_child_content">
+                                <div class="leverbetrouwbaarheid" title="PG: 5 places">
+                                    <span>PG</span>
+			        		<span><div
+                                    style="float: left; background-image: url('unit.png'); height: 16px; width: 16px;"></div>
+				        	</span>
+                                </div>
+                                <div class="leverbetrouwbaarheid" title="Somatiek: 22 places">
+                                    <span>Somatiek</span>
+			        		<span><div
+                                    style="float: left; background-image: url('unit.png'); height: 16px; width: 16px;"></div><div
+                                    style="float: left; background-image: url('unit.png'); height: 16px; width: 16px;"></div><div
+                                    style="float: left; background-image: url('unit.png'); height: 16px; width: 16px;"></div>
+				        	</span>
+                                </div>
+                                <div class="leverbetrouwbaarheid" title="V&amp;V: 0 places">
+                                    <span>V&amp;V</span>
+			        		<span>
+				        	</span>
+                                </div>
+                                <div class="leverbetrouwbaarheid" title="Dagactiviteit: 0 places">
+                                    <span>Dagactiviteit</span>
+			        		<span>
+				        	</span>
+                                </div>
+                                <div class="leverbetrouwbaarheid" title="VG: 2 places">
+                                    <span>VG</span>
+			        		<span><div
+                                    style="float: left; background-image: url('unit.png'); height: 16px; width: 16px;"></div>
+				        	</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="wide_pagefooter"></div>
+    </div>
+</div>
+<div id="tasksAndSignals">
+
+<div class="tasks">
+    <!-- page, wide_page and small_page -->
+
+    <div class="signals">
+        <!-- page, wide_page and small_page -->
+        <div id="small_page">
+            <div id="small_pageheader">
+                <h1>Notifications (Client)</h1>
+            </div>
+            <div id="small_pagecontent">
+                <div class="odd">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/20"> <img alt="icoon"
+                                                                                      src="birthday.client.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/20">Birthdays of clients
+                            &nbsp;<span class="taskCount">(3)</span></a>
+                    </div>
+                </div>
+
+                <div class="even">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/40"> <img alt="icoon"
+                                                                                      src="careorder.expired.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/40">careorder.expired
+                            &nbsp;<span class="taskCount">(2)</span></a>
+                    </div>
+                </div>
+                <div class="odd">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/8"> <img alt="icoon"
+                                                                                     src="careorder.new.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/8">New care orders
+                            &nbsp;<span class="taskCount">(1)</span></a>
+                    </div>
+                </div>
+                <div class="even">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/30"> <img alt="icoon"
+                                                                                      src="client.careplan.expired.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/30">client.careplan.expired
+                            &nbsp;<span class="taskCount">(74)</span></a>
+                    </div>
+                </div>
+                <div class="odd">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/50"> <img alt="icoon"
+                                                                                      src="client.careplan.report.actions.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/50">client.careplan.report.actions
+                            &nbsp;<span class="taskCount">(10)</span></a>
+                    </div>
+                </div>
+                <div class="even">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/60"> <img alt="icoon"
+                                                                                      src="client.careplan.report.actions.foreducation.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/60">client.careplan.report.actions.foreducation
+                            &nbsp;<span class="taskCount">(3)</span></a>
+                    </div>
+                </div>
+                <div class="odd">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/11"> <img alt="icoon"
+                                                                                      src="client.duplicate.bsn.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/11">client.duplicate.bsn
+                            &nbsp;<span class="taskCount">(10)</span></a>
+                    </div>
+                </div>
+                <div class="even">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/10"> <img alt="icoon"
+                                                                                      src="client.invalid.bsn.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/10">client.invalid.bsn
+                            &nbsp;<span class="taskCount">(70)</span></a>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div id="small_pagefooter"></div>
+        </div>
+    </div>
+</div>
+
+<div class="rightFloat">
+    <div class="signals">
+        <!-- page, wide_page and small_page -->
+        <div id="small_page">
+            <div id="small_pageheader">
+                <h1>Notifications (Employee)</h1>
+            </div>
+            <div id="small_pagecontent">
+
+                <div class="odd">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/21"> <img alt="icoon"
+                                                                                      src="birthday.employee.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/21">Birthdays of employees
+                            &nbsp;<span class="taskCount">(3)</span></a>
+                    </div>
+                </div>
+
+                <div class="even">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/247151"> <img alt="icoon"
+                                                                                          src="notities_grijs.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/247151">MIC openstaand
+                            &nbsp;<span class="taskCount">(12)</span></a>
+
+                    </div>
+                </div>
+                <div class="odd">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/118164"> <img alt="icoon"
+                                                                                          src="notities_grijs.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/118164">M&amp;M
+                            &nbsp;<span class="taskCount">(5)</span></a>
+
+                    </div>
+                </div>
+                <div class="even">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/136786"> <img alt="icoon"
+                                                                                          src="notities_grijs.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/136786">Risicoanalyse decubitus
+                            &nbsp;<span class="taskCount">(10)</span></a>
+
+                    </div>
+                </div>
+                <div class="odd">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/7"> <img alt="icoon"
+                                                                                     src="planning.unfinanced.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/7">Planning without legitimation.
+                            &nbsp;<span class="taskCount">(1)</span></a>
+                    </div>
+                </div>
+                <div class="even">
+                    <div class="icon">
+                        <a href="http://localhost:8080/dashboard/taskfolder/6"> <img alt="icoon"
+                                                                                     src="timecorrection.check.png"></a>
+                    </div>
+                    <div class="task">
+                        <a href="http://localhost:8080/dashboard/taskfolder/6">TouchPro time changes often
+                            &nbsp;<span class="taskCount">(0)</span></a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div id="small_pagefooter"></div>
+        </div>
+    </div>
+
+    <div class="rightFloat">
+        <div class="signals">
+            <!-- page, wide_page and small_page -->
+            <div id="small_page">
+                <div id="small_pageheader">
+                    <h1>Notifications (Custom)</h1>
+                </div>
+                <div id="small_pagecontent">
+                    <div class="odd">
+                        <div class="icon">
+                            <a href="http://localhost:8080/dashboard/taskfolder/21"> <img alt="icoon"
+                                                                                          src="cockpit_blauw.png"></a>                             </div>
+                        <div class="task">
+                            <a href="http://localhost:8080/dashboard/taskfolder/21">Сorporate party
+                                &nbsp;<span class="taskCount">(1)</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div id="small_pagefooter"></div>
+</div>
+
+</div>
+</div>
+<div class="messages">
+    <!-- page, wide_page and small_page -->
+    <div id="wide_page">
+        <div id="wide_pageheader">
+            <h1>Berichten</h1>
+        </div>
+        <div id="wide_pagecontent">
+            <div class="margin" style="text-align: left; padding-top: 15px;"><span class="textItem">There are no messages for you.</span>
+            </div>
+            <div style="padding-right: 15px; text-align: right;">
+                <a href="http://localhost:8080/administration/note/NoteList.faces">Edit messages</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="wide_pagefooter"></div>
+    </div>
+</div>
+<input name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id1" type="hidden">
+</form>
+<div id="logo">
+    -
+    <a class="about" href="http://localhost:8080/base/about.faces">
+        NEDAP healthcare - Mrs. Corrie van Zomeren - version 2013.master
+    </a>
+</div>
+<div id="releaseNotes">
+    <form id="j_id204" name="j_id204" method="post" action="http://localhost:8080/dashboard/"
+          enctype="application/x-www-form-urlencoded">
+        <input name="j_id204" value="j_id204" type="hidden">
+
+        <script type="text/javascript" language="Javascript">function dpf(f) {
+            var adp = f.adp;
+            if (adp != null) {
+                for (var i = 0; i < adp.length; i++) {
+                    f.removeChild(adp[i]);
+                }
+            }
+        }
+        ;
+        function apf(f, pvp) {
+            var adp = new Array();
+            f.adp = adp;
+            var i = 0;
+            for (k in pvp) {
+                var p = document.createElement("input");
+                p.type = "hidden";
+                p.name = k;
+                p.value = pvp[k];
+                f.appendChild(p);
+                adp[i++] = p;
+            }
+        }
+        ;
+        function jsfcljs(f, pvp, t) {
+            apf(f, pvp);
+            var ft = f.target;
+            if (t) {
+                f.target = t;
+            }
+            f.submit();
+            f.target = ft;
+            dpf(f);
+        }
+        ;</script>
+        <a href="http://localhost:8080/help?page=/softwareversies/wijzigingen-in-de-software/softwareversies"
+           class="about">New features</a><input name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id1"
+                                                type="hidden">
+    </form>
+</div>
+</div>
+</div>
+<!--<script src="/javascript/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">
+    _uacct = "UA-2332069-1";
+    urchinTracker();
+</script>-->
+<script type="text/javascript">
+    var chatApplicationSettings;
+    chatApplicationSettings = {
+        localeHeader: "BERICHTEN",
+        teams: [
+            ["mijn team", "team"],
+            ["basisvvt", 1]
+        ],
+        localePostNewMessageButton: "Nieuw bericht",
+        localePostMessageButton: "Plaats",
+        localeCancelButton: "Annuleren",
+        localeBackButton: "Terug",
+        localeRecipientPlaceholder: "Wie wil je bereiken?",
+        localeEmptyBodyAlert: "Oeps, je moet eerst een bericht typen voordat je het kunt versturen!",
+        localeEmptyRecipientAlert: "Oeps, je moet eerst een ontvanger selecteren!",
+        localeTo: "naar",
+        localeNew: "NIEUW",
+        localeUpdated: "NIEUWE REACTIE",
+        localeReplyCount: "%d reacties",
+        localeNoReplies: "geen reacties",
+        localeRemove: "verwijder bericht",
+        localeDeleteConfirm: "Weet je zeker dat je dit bericht wilt verwijderen?",
+        localeInReplyTo: "Naar:",
+        localeMyTeamDefault: "Dit bericht wordt verzonden naar %s",
+        localeTimeago: {
+            prefixAgo: null,
+            prefixFromNow: null,
+            suffixAgo: "geleden",
+            suffixFromNow: "vanaf nu",
+            seconds: "minder dan een minuut",
+            minute: "ongeveer een minuut",
+            minutes: "%d minuten",
+            hour: "ongeveer een uur",
+            hours: "ongeveer %d uur",
+            day: "een dag",
+            days: "%d dagen",
+            month: "ongeveer een maand",
+            months: "%d maanden",
+            year: "ongeveer een jaar",
+            years: "%d jaar",
+            numbers: []
+        },
+        token: 'eyJkYXRhIjoie1wiYnVja2V0X3NpemVcIjozNjAwLFwiY3VzdG9tZXJfY29kZVwiOlwiTkUwMDAxXCIsXCJzb3VyY2VcIjpcInJlZ2lzdHJhdGlvblwiLFwiYnVja2V0XCI6MTM3NDE3NDAwMCxcInBlcm1pc3Npb25zXCI6W1widGVhbV9ieV9pZFwiXSxcImVtcGxveWVlX2lkXCI6MTB9Iiwic2lnbmF0dXJlIjoiOTZjOTYyOTk0YmI1Y2QwMDY3MjllZDdiMzUwMDcxZGU5Yzg4ZWIxZWFjZWI4MTdkYWJkYzZhODE1NzIyODQ5MyJ9'
+    };
+
+    (function (d, t) {
+        var g = d.createElement(t),
+                s = d.getElementsByTagName(t)[0];
+        g.src = 'https://kamino.ons.io/assets/chat_application.js';
+        s.parentNode.insertBefore(g, s);
+    }(document, 'script'));
+</script>
+
+<div class="kamino_main">
+    <div class="kamino_header">BERICHTEN
+        <div style="display: none;" class="kamino_counter"></div>
+    </div>
+    <div class="kamino_content">
+        <div class="kamino_vertical_slider">
+            <div class="kamino_horizontal_slider">
+                <div class="kamino_message_list">
+                    <ul class="kamino_messages"></ul>
+                    <div class="kamino_button kamino_new_message">Nieuw bericht</div>
+                </div>
+            </div>
+            <div class="kamino_post_new_message">
+                <form action="http://localhost:8080/dashboard/" class="kamino_message_form">
+                    <div class="kamino_autocomplete"><input value="" placeholder="Wie wil je bereiken?"
+                                                            class="kamino_recipient" type="text">
+
+                        <div class="kamino_popup">
+                            <div class="kamino_results"></div>
+                            <ul class="kamino_teams"></ul>
+                            <ul class="kamino_employees"></ul>
+                            <ul class="kamino_team_list">
+                                <li class="kamino_employee_or_team">
+                                    <div class="kamino_team_image"></div>
+                                    <div class="kamino_undefined"><span class="kamino_undefined recipient_name">mijn team</span>
+                                    </div>
+                                </li>
+                                <li class="kamino_employee_or_team">
+                                    <div class="kamino_team_image"></div>
+                                    <div class="kamino_undefined"><span
+                                            class="kamino_undefined recipient_name">basisvvt</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="kamino_popup_notification">
+                            <div>Je kunt nu ook makkelijk een bericht sturen naar andere teams binnen je zorginstelling.
+                                Typ de naam van het team dat je wilt bereiken in en selecteer vervolgens het gewenste
+                                team.
+                            </div>
+                            <div style="float: right; width: 100px;" class="kamino_button">OK!</div>
+                        </div>
+                    </div>
+                    <textarea class="kamino_body"></textarea>
+
+                    <div class="kamino_cancel_button">Annuleren</div>
+                    <div class="kamino_button kamino_post_new_message_button">Verstuur</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
