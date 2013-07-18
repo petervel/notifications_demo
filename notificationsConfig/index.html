@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <link rel="apple-touch-icon" href="http://localhost:8080/media/images/apple_touch_icon.png">
+
+    <title>Notifications configuration
+    </title>
+
+    <!--[if lte IE 6]>
+    <link href="/stylesheets/base2_ie6.css" type="text/css" rel="stylesheet"/>
+    <![endif]-->
+
+
+    <meta content="com.nedap.aeos.io.web.administration.ResourcesHTML" name="loadBundle">
+
+
+    <link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="background-image: url('balloon.jpg'); background-size: cover;">
+<div id="banner"></div>
+<div id="container">
+    <!-- TOP MENU -->
+    <!-- TOP MENU -->
+    <div id="menu" class="en admin">
+        <ul id="menunav">
+            <li id="mn-dashboard"><a href="http://localhost:8080/dashboard/" onfocus="this.blur();">Dashboard</a></li>
+            <li id="mn-client"><a href="http://localhost:8080/client/" onfocus="this.blur();">Client</a></li>
+            <li id="mn-employee"><a href="http://localhost:8080/employee/" onfocus="this.blur();">Employee</a></li>
+            <li id="mn-presence"><a href="http://localhost:8080/presence/" onfocus="this.blur();">Care</a></li>
+            <li id="mn-reports"><a href="http://localhost:8080/report/" onfocus="this.blur();">Reports</a></li>
+            <li id="mn-admin"><a href="http://localhost:8080/administration/" onfocus="this.blur();">Settings</a></li>
+        </ul>
+        <div id="mid">
+            <div id="movesbutton"><a href="http://localhost:8080/planning" target="_top" onfocus="this.blur();"><img
+                    src="moves-button.png" alt="Planning"></a></div>
+        </div>
+        <ul id="menunav">
+            <li id="mn-help"><a title="Help bij dit systeem" href="http://localhost:8080/help?page=home" target="_top"
+                                onfocus="this.blur();">Help</a></li>
+            <li id="mn-logout"><a title="Uitloggen" href="http://localhost:8080/logout/"
+                                  onfocus="this.blur();">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- PAGE -->
+    <div id="page_container">
+        <div id="page">
+
+            <!-- TABS  or render tabboxheader if no tabs are present -->
+            <div id="pageheader"><h1>Notifications configuration</h1></div>
+
+            <!-- PAGE CONTENT -->
+            <div id="pagecontent">
+                <div id="error_box">
+
+                </div>
+                <div id="info_box">
+
+                </div>
+                <form action="http://localhost:8080/administration/signal/SignalSettingSaveAction.po" method="post"
+                      name="form" onsubmit="if (_submitting) {return false;}; _submitting=true;">
+                    <div class="divMain">
+                        <div class="display_error" id="errorMsg"></div>
+                        <div class="divNormal">
+                            <table summary="" cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                <tr>
+                                    <td colspan="3"><h2 name="titleSubClientVerify">Autorize client visits</h2></td>
+                                </tr>
+                                <tr>
+                                    <td class="label" name="labelProductionVerifierBandwidth" width="76%">Warning if
+                                        deviation care
+                                        arrangement
+                                    </td>
+                                    <td><input class="fancy" id="productionVerifierBandwidth" maxlength="2"
+                                               name="productionVerifierBandwidth"
+                                               onblur="javascript:numberField(productionVerifierBandwidth.value, false, 'The field `productionVerifierBandwidth` is required.', 'The value, given as productionVerifierBandwidth is not a valid number.')"
+                                               size="3" tabindex="1" value="10"></td>
+                                    <td class="text">procent</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><br></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h2 name="titleSubAwbzIndicatieExpireLimith">Expired client
+                                        contracts</h2></td>
+                                </tr>
+                                <tr>
+                                    <td class="label" name="labelAwbzIndicatieExpireLimith">Warning if contract expires
+                                        within
+                                    </td>
+                                    <td><input class="fancy" id="indicatieExpireLimit" maxlength="3"
+                                               name="indicatieExpireLimit"
+                                               onblur="javascript:numberField(indicatieExpireLimit.value, false, 'The field `indicatieExpireLimit` is required.', 'The value, given as indicatieExpireLimit is not a valid number.')"
+                                               size="3" tabindex="2" value="31"></td>
+                                    <td class="text">dagen</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><br></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h2 name="titleSubCarePlanExpireLimit">Einde geldigheid
+                                        zorgplannen</h2></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Zorgplan signalering activeren</td>
+                                    <td><input checked="checked" class="fancy" id="carePlanSignalEnabled"
+                                               name="carePlanSignalEnabled" value="true" type="checkbox"></td>
+                                    <td class="text">activeren</td>
+                                </tr>
+                                <tr>
+                                    <td class="label" name="labelCareplanExpireLimit">Zorgplan signaleren waarvan de
+                                        geldigheid afloopt binnen
+                                    </td>
+                                    <td><input class="fancy" id="careplanExpireLimit" maxlength="3"
+                                               name="careplanExpireLimit"
+                                               onblur="javascript:numberField(careplanExpireLimit.value, false, 'The field `careplanExpireLimit` is required.', 'The value, given as careplanExpireLimit is not a valid number.')"
+                                               size="3" tabindex="2" value="42"></td>
+                                    <td class="text">dagen</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><br></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h2 name="titleBirthdayAlert">Melding verjaardagen medewerker en
+                                        clienten</h2></td>
+                                </tr>
+                                <tr>
+                                    <td class="label" name="labelBirthdayAlert">Medewerkers en Clienten met verjaardagen
+                                        binnen
+                                    </td>
+                                    <td><input class="fancy" id="BirthdayAlert" maxlength="3" name="BirthdayAlert"
+                                               onblur="javascript:numberField(BirthdayAlert.value, false, 'The field `BirthdayAlert` is required.', 'The value, given as BirthdayAlert is not a valid number.')"
+                                               size="3" tabindex="2" value="45"></td>
+                                    <td class="text">dag(en) weergeven</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><br></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h2 name="titleTimeWindowLocationAuthorization">Tijdsvenster locatie
+                                        autorisatie</h2></td>
+                                </tr>
+                                <tr>
+                                    <td class="label" name="labelTimeWindowLocationAuthorizationStart">Period voor het
+                                        tijdsvenster van
+                                    </td>
+                                    <td><input class="fancy" id="timeWindowLocationAuthorizationStart" maxlength="2"
+                                               name="timeWindowLocationAuthorizationStart"
+                                               onblur="javascript:numberField(timeWindowLocationAuthorizationStart.value, false, 'The field `timeWindowLocationAuthorizationStart` is required.', 'The value, given as timeWindowLocationAuthorizationStart is not a valid number.')"
+                                               size="2" tabindex="3" value="7"></td>
+                                    <td class="text">dag(en) weergeven</td>
+                                </tr>
+                                <tr>
+                                    <td class="label" name="labelTimeWindowLocationAuthorizationEnd">Period na het
+                                        tijdsvenster van
+                                    </td>
+                                    <td><input class="fancy" id="timeWindowLocationAuthorizationEnd" maxlength="2"
+                                               name="timeWindowLocationAuthorizationEnd"
+                                               onblur="javascript:numberField(timeWindowLocationAuthorizationEnd.value, false, 'The field `timeWindowLocationAuthorizationEnd` is required.', 'The value, given as timeWindowLocationAuthorizationEnd is not a valid number.')"
+                                               size="2" tabindex="3" value="14"></td>
+                                    <td class="text">dag(en) weergeven</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br></div>
+                        <div class="divButton"><input class="newbtn100Grey" id="replaceWithBackButton" name="buttonBack"
+                                                      onclick="MM_goToURL('self','/administration/other');return false;"
+                                                      tabindex="21" value="Back" type="button"> <input
+                                class="newbtn100Green" name="buttonSave" value="Save" type="submit"></div>
+                    </div>
+                    <input name="hiddenInitial" value="initial" type="hidden"></form>
+                <form action="http://localhost:8080/administration/signal/SignalSettings.po?init=true"
+                      name="reloadme_form" onsubmit="if (_submitting) {return false;}; _submitting=true;"><input
+                        name="reloadme_field" value="reloadme" type="hidden"></form>
+            </div>
+            <div id="pagefooter"></div>
+            <div id="logo">
+                -
+                <a class="about" href="http://localhost:8080/base/about.faces">
+                    NEDAP healthcare - Mrs. Corrie van Zomeren - version 2013.master
+                </a>
+            </div>
+            <div id="releaseNotes">
+                <form id="j_id59" name="j_id59" method="post"
+                      action="http://localhost:8080/administration/signal/SignalSettings.po"
+                      enctype="application/x-www-form-urlencoded">
+                    <input name="j_id59" value="j_id59" type="hidden">
+
+
+                    <a href="http://localhost:8080/help?page=/softwareversies/wijzigingen-in-de-software/softwareversies"
+                       class="about">New features</a><input name="javax.faces.ViewState" id="javax.faces.ViewState"
+                                                            value="j_id34" type="hidden">
+                </form>
+            </div>
+        </div>
+        <div id="sidebar">
+        </div>
+        <div id="containerfooter"></div>
+    </div>
+</div>
+<!--<script src="/javascript/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">
+    _uacct = "UA-2332069-1";
+    urchinTracker();
+</script>-->
+
+
+<div class="kamino_main">
+    <div class="kamino_header">BERICHTEN
+        <div style="display: none;" class="kamino_counter"></div>
+    </div>
+    <div class="kamino_content">
+        <div class="kamino_vertical_slider">
+            <div class="kamino_horizontal_slider">
+                <div class="kamino_message_list">
+                    <ul class="kamino_messages"></ul>
+                    <div class="kamino_button kamino_new_message">Nieuw bericht</div>
+                </div>
+            </div>
+            <div class="kamino_post_new_message">
+                <form action="http://localhost:8080/administration/signal/SignalSettings.po?init=true"
+                      class="kamino_message_form">
+                    <div class="kamino_autocomplete"><input value="" placeholder="Wie wil je bereiken?"
+                                                            class="kamino_recipient" type="text">
+
+                        <div class="kamino_popup">
+                            <div class="kamino_results"></div>
+                            <ul class="kamino_teams"></ul>
+                            <ul class="kamino_employees"></ul>
+                            <ul class="kamino_team_list">
+                                <li class="kamino_employee_or_team">
+                                    <div class="kamino_team_image"></div>
+                                    <div class="kamino_undefined"><span class="kamino_undefined recipient_name">mijn team</span>
+                                    </div>
+                                </li>
+                                <li class="kamino_employee_or_team">
+                                    <div class="kamino_team_image"></div>
+                                    <div class="kamino_undefined"><span
+                                            class="kamino_undefined recipient_name">basisvvt</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="kamino_popup_notification">
+                            <div>Je kunt nu ook makkelijk een bericht sturen naar andere teams binnen je zorginstelling.
+                                Typ de naam van het team dat je wilt bereiken in en selecteer vervolgens het gewenste
+                                team.
+                            </div>
+                            <div style="float: right; width: 100px;" class="kamino_button">OK!</div>
+                        </div>
+                    </div>
+                    <textarea class="kamino_body"></textarea>
+
+                    <div class="kamino_cancel_button">Annuleren</div>
+                    <div class="kamino_button kamino_post_new_message_button">Verstuur</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
