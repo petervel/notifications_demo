@@ -1,0 +1,1 @@
+function menu(a){child=a.nextSibling;while(child.nodeName!="DIV"){child=child.nextSibling;}if(child.style.display==""){a.className="branchCollapse";child.style.display="none";}else{a.className="branchExpand";child.style.display="";}}function consume(){if(window.event){event.cancelBubble=true;}}
