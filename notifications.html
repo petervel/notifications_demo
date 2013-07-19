@@ -30,6 +30,7 @@
             }
         </style>
         <script src="notifications_files/jquery-2.0.3.js" type="text/javascript"></script>
+        <script src="notifications_files/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
 
         <style type="text/css"></style>
     </head>
@@ -129,6 +130,124 @@
                 </div>
 
     <script type="text/javascript">
+
+        function okFn($object) {
+            var $container;
+            if($object.hasClass("remarkContainer"))
+                $container = $object;
+            else
+                $container = $object.closest(".remarkContainer");
+
+            $container.data('commentButton').data('textContent', $container.find('textarea').val());
+            $container.data('commentButton').attr('data-remarkDisplayed',"false");
+            $container.remove();
+        }
+        function cancelFn($object) {
+            var $container;
+            if($object.hasClass("remarkContainer"))
+                $container = $object;
+            else
+                $container = $object.closest(".remarkContainer");
+
+            $container.data('commentButton').attr('data-remarkDisplayed',"false");
+            $container.remove();
+        }
+
+        function commentClicked() {
+            var $button = $(this);
+
+            if($button.attr("data-remarkDisplayed") == "false")
+            {
+                var $commentField = $('<div class="remarkContainer" style="display:none; background-color:white"><textarea/><br/><button>OK</button><button>Cancel</button></div>');
+
+                $button.attr("data-remarkDisplayed","true");
+
+                $commentField
+                        .data('commentButton', $button)
+                        .css({
+                            position: 'absolute',
+                            left: $button.offset().left,
+                            top: $button.offset().top + $button.outerHeight()
+                        })
+                        .find('textarea')
+                        .css({
+                            width: 200,
+                            height: 100
+                        })
+                        .keypress(function(e) {
+                            if (e.which === 13) {
+                                e.preventDefault();
+                                okFn($(this));
+                            }
+                        })
+                        .end()
+                        .find('button:eq(0)')
+                        .click(function() {
+                            okFn($(this));
+                        })
+                        .next()
+                        .click(function() {
+                            cancelFn($(this));
+                        })
+                        .end()
+                        .end()
+                        .appendTo(document.body)
+                        .fadeIn('fast');
+
+                /*
+                                $commentField
+                                        .data('commentButton', $button)
+                                        .css({
+                                            position: 'absolute',
+                                            left: $button.offset().left,
+                                            top: $button.offset().top + $button.outerHeight()
+                                        })
+                                        .find('textarea')
+                                        .val($button.data('textContent') || 'This is my comment field\'s text')
+                                        .css({
+                                            width: 200,
+                                            height: 100
+                                        })
+                                        .keypress(function(e) {
+                                            if (e.which === 13) {
+                                                e.preventDefault();
+                                                okFn($(this));
+                                            }
+                                        })
+                                        .end()
+                                        .find('button:eq(0)')
+                                        .click(function() {
+                                            okFn($(this));
+                                        })
+                                        .next()
+                                        .click(function() {
+                                            cancelFn($(this));
+                                        })
+                                        .end()
+                                        .end()
+                                        .appendTo(document.body).fadeIn("slow");
+                 */
+            }
+
+        }
+
+        function clickDocument(e) {
+            var $target = $(e.target);
+            if (
+                !$target.hasClass('remarkContainer') &&
+                !$target.hasClass('comment') &&
+                !$target.hasClass('comment-icon') &&
+                !$target.closest('.remarkContainer').length
+                ) {
+                    $(".remarkContainer").each(function(){
+                            var $this = $(this);
+                            $this.data("commentButton").attr("data-remarkDisplayed","false");
+                            $this.remove();
+                        }
+                );
+            }
+        }
+
         function hideTwoTrs(obj) {
             obj.next().fadeOut();
             obj.fadeOut();
@@ -139,8 +258,140 @@
                 hideTwoTrs($(this).closest('tr'));
                 return false;
             });
-       });
+
+            $('.hide-button').click(function() {
+                var notification = $(this).closest('.notification');
+                notification.hide('slide', {direction: 'left'}, 300);
+            });
+
+            var notifications = $('.notification');
+
+            notifications.hover(function() {
+                $('.extra-info', $(this)).show();
+            });
+
+            notifications.mouseleave(function() {
+                $('.extra-info', $(this)).hide();
+            });
+
+            $('.comment').click(commentClicked);
+
+            $(document).click(function (e) { clickDocument(e); });
+        });
     </script>
+<style>
+    .notifications {
+        font:bold 11px Arial,Helvetica,sans-serif;
+        width: 100%;
+    }
+    .notification {
+        width: 100%;
+        display: inline-block;
+        margin-top: 10px;
+        border-bottom: grey solid 1px;
+    }
+
+    .icon {
+        float: left;
+    }
+
+
+    .icon img {
+        width: 13px;
+        height: 13px;
+    }
+
+    .main-info {
+        width: 150px;
+        float: left;
+    }
+
+    .info {
+        float: left;
+    }
+
+    .extra-info {
+        font-weight: bold;
+        float: left;
+        display: none;
+    }
+
+    .expires-at {
+        float: left;
+        color: grey;
+    }
+
+    .date-info {
+        float: left;
+    }
+
+    .comment {
+        padding-top: 10px;
+
+        padding-right: 25px;
+        float: right;
+    }
+
+    .hide-button {
+        float: left;
+        padding: 3px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+    .complete-section {
+        float: right;
+    }
+
+    .comment {
+        float: left;
+    }
+
+    .comment img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .complete-button {
+        float: left;
+        padding-right:10px;
+    }
+</style>
+
+<div class="notifications">
+    <div class="notification">
+        <div class="hide-button">
+            <img alt="verbergen" src="notifications_files/hide_icon.gif">
+        </div>
+        <div class="main-info">
+            <div class="client-name">
+                <a href="https://peter.ioservice.net/client/view/4208570">Mw. JJ Aalders - Houting</a>
+            </div>
+            <div class="date-info">
+                <div class="icon">
+                    <img alt="" src="./notifications_files/error_small.png">
+                </div>
+                <div class="expires-at">
+                    1 maanden geleden
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="detailed-info">Product MSVT laag is verlopen (25-05-2013 t/m 07-06-2013).</div>
+            <div class="extra-info"></div>
+        </div>
+
+        <div class="complete-section">
+            <div class="comment" data-remarkDisplayed="false">
+                <img class="comment-icon" src="notifications_files/comment.gif">
+            </div>
+            <div class="complete-button">
+                <input type="button" value="Verwijder" class="newbtn100Grey">
+            </div>
+        </div>
+    </div>
+</div>
+
 
                             <table class="table">
                                 <tbody><tr>
