@@ -142,7 +142,14 @@
             $container.data('commentButton').data('textContent', $container.find('textarea').val());
             $container.data('commentButton').attr('data-remarkDisplayed',"false");
             $container.remove();
+
+            var button = $container.data('commentButton');
+            if (button.parent().hasClass('complete-button')) {
+                var notification = $(this).closest('.notification');
+                notification.hide('slide', {direction: 'left'}, 300);
+            }
         }
+
         function cancelFn($object) {
             var $container;
             if($object.hasClass("remarkContainer"))
@@ -194,40 +201,6 @@
                         .end()
                         .appendTo(document.body)
                         .fadeIn('fast');
-
-                /*
-                                $commentField
-                                        .data('commentButton', $button)
-                                        .css({
-                                            position: 'absolute',
-                                            left: $button.offset().left,
-                                            top: $button.offset().top + $button.outerHeight()
-                                        })
-                                        .find('textarea')
-                                        .val($button.data('textContent') || 'This is my comment field\'s text')
-                                        .css({
-                                            width: 200,
-                                            height: 100
-                                        })
-                                        .keypress(function(e) {
-                                            if (e.which === 13) {
-                                                e.preventDefault();
-                                                okFn($(this));
-                                            }
-                                        })
-                                        .end()
-                                        .find('button:eq(0)')
-                                        .click(function() {
-                                            okFn($(this));
-                                        })
-                                        .next()
-                                        .click(function() {
-                                            cancelFn($(this));
-                                        })
-                                        .end()
-                                        .end()
-                                        .appendTo(document.body).fadeIn("slow");
-                 */
             }
 
         }
@@ -238,6 +211,7 @@
                 !$target.hasClass('remarkContainer') &&
                 !$target.hasClass('comment') &&
                 !$target.hasClass('comment-icon') &&
+                !$target.hasClass('complete-button') &&
                 !$target.closest('.remarkContainer').length
                 ) {
                     $(".remarkContainer").each(function(){
@@ -276,13 +250,14 @@
             });
 
             $('.comment').click(commentClicked);
+            $('.complete-button').click(commentClicked);
 
             $(document).click(function (e) { clickDocument(e); });
         });
     </script>
 <style>
     .notifications {
-        font:bold 11px Arial,Helvetica,sans-serif;
+        font: bold 11px Arial,Helvetica,sans-serif;
         width: 100%;
     }
     .notification {
@@ -387,7 +362,7 @@
             <div class="comment" data-remarkDisplayed="false">
                 <img class="comment-icon" src="notifications_files/comment.gif">
             </div>
-            <div class="complete-button">
+            <div class="complete-button" data-remarkDisplayed="false">
                 <input type="button" value="Verwijder" class="newbtn100Grey">
             </div>
         </div>
